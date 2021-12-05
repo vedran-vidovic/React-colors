@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from "react";
+import isValidHex from "../color-validation";
 
 const Form = ({ setColors }) => {
   const colorRef = useRef();
@@ -7,7 +8,7 @@ const Form = ({ setColors }) => {
   function addColor() {
     var color = colorRef.current.value;
     console.log(color);
-    if (color === "" || color === /^#[0-9A-F]{6}$/i.test("#AABBCC")) {
+    if (color === "" || !isValidHex(color)) {
       return alert("This color does not exist! Type a color hex that exists.");
     } else {
       setColors((prevcolors) => [...prevcolors, color]);
